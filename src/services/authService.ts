@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import UserAuthentication from '../models/userAuthentication';
 import logger from '../utils/logger';
 

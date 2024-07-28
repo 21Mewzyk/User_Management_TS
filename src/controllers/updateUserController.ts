@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import UserAuthentication from '../models/userAuthentication';
 import UserData from '../models/userData';

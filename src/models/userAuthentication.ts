@@ -1,42 +1,31 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
-interface UserAuthenticationAttributes {
-    id: string;
-    username: string;
-    password: string;
-}
-
-interface UserAuthenticationCreationAttributes extends Optional<UserAuthenticationAttributes, 'id'> {}
-
-class UserAuthentication extends Model<UserAuthenticationAttributes, UserAuthenticationCreationAttributes>
-  implements UserAuthenticationAttributes {
+class UserAuthentication extends Model {
     public id!: string;
     public username!: string;
     public password!: string;
+
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
 }
 
-UserAuthentication.init(
-    {
-        id: {
-            type: DataTypes.STRING,
-            primaryKey: true,
-        },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        }
+UserAuthentication.init({
+    id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
     },
-    {
-        sequelize,
-        modelName: 'UserAuthentication',
-        timestamps: true,
-    }
-);
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+}, {
+    sequelize,
+    modelName: 'UserAuthentication',
+});
 
 export default UserAuthentication;
